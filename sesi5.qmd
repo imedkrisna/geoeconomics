@@ -1,6 +1,6 @@
 ---
-title: "Pengukuran Pengaruh Geopolitik terhadap Ekspor dan Impor Indonesia"
-subtitle: "Sesi V (Capacity Building) — FGD Analytical Notes 2026, Bank Indonesia"
+title: "Pengukuran Indikator Geopolitik untuk Indonesia"
+# subtitle: ""
 date: "21 Juli 2026"
 author: "Krisna Gupta"
 format:
@@ -15,9 +15,7 @@ format:
 
 ## Tujuan sesi ini
 
-- Sesi IV: kita *melihat* indikator — GPR, ideal points, GeoV/GeoC, HHI.
-
-- Sesi ini: kita **menghitungnya sendiri**, dari data publik, dengan Python.
+- Kita coba menghitungnya sendiri, dari data publik, dengan Python.
 
 - Empat latihan:
   1. **GPR** — risiko geopolitik global, USA, Tiongkok, Indonesia;
@@ -25,7 +23,7 @@ format:
   3. **GeoV & GeoC** — membangun indikator Aiyar-Ohnsorge dari nol;
   4. **HHI & Theil** — konsentrasi mitra dagang Indonesia.
 
-- Prinsip: semua **reproducible** — data publik, kode terbuka, angka di slide ini semuanya keluaran skrip.
+- Prinsip: semua **reproducible**: data publik, kode terbuka, angka di slide ini semuanya keluaran skrip.
 
 ## Setup {.m}
 
