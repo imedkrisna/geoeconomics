@@ -1,0 +1,59 @@
+/*-- scss:defaults --*/
+
+@import url('https://fonts.googleapis.com/css2?family=Artifika&family=Oldenburg&display=swap');
+
+// fonts
+
+
+$font-family: 'Artifika', serif;
+
+// colors
+$body-bg: #f0f1eb !default;
+$body-color: #000 !default;
+$link-color: #51483d !default;
+$selection-bg: #26351c;
+
+// headings
+$presentation-heading-font: 'Oldenburg', cursive;
+//$presentation-heading-color: #586e75 !default;
+//$presentation-heading-text-transform: uppercase !default;
+
+// code blocks
+$code-block-border-color: darkgreen !default;
+$code-bg: #000080;
+$code-color: yellow;
+
+/*-- scss:rules --*/
+
+//html * {
+//  color-profile: sRGB;
+//  rendering-intent: auto;
+//}
+
+.reveal a {
+  color: blue;
+  line-height: 1.3em;
+}
+
+.reveal h5 {
+  font-family: 'Milonga', cursive;
+}
+
+.xs {
+  font-size: 35%;
+  line-height: 0 ;
+}
+
+.s {
+  font-size: 60%;
+  
+}
+
+.m {
+  font-size: 80%;
+  
+}
+.reveal i {
+    font-family: 'FontAwesome';
+    font-style: normal;
+}
