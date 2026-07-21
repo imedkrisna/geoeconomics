@@ -1,32 +1,23 @@
-"""Latihan 2 — menarik dan membaca UNGA ideal points.
+"""Menarik dan membaca UNGA ideal points.
 
-Data: Bailey, Strezhnev & Voeten (2017), "Estimating Dynamic State Preferences
-from United Nations Voting Data", JCR 61(2). Update 1946-2025.
+Data: Bailey, Strezhnev & Voeten (2017), "Estimating Dynamic State Preferences from United Nations Voting Data", JCR 61(2). Update 1946-2025.
 
 Cara download:
   1. Buka Harvard Dataverse doi:10.7910/DVN/LEJUQZ
      (https://doi.org/10.7910/DVN/LEJUQZ).
-  2. Unduh file `Idealpointestimates1946-2025.tab` (format tab-separated).
+  2. Unduh file `Idealpointestimates1946-2025.tab` (format tab-separated, bisa dibuka pake excel).
   3. Simpan sebagai data/ideal_points_1946_2025.tab.
 Kolom kunci: `iso3c` (kode negara), `year`, `IdealPointFP` (ideal point
 dimensi pertama; makin tinggi = makin dekat ke tatanan liberal pimpinan AS).
 
 Output: figures/ideal_points_sesi5.png
   Panel A - ideal point USA, CHN, IDN, AUS, 1946-2025.
-  Panel B - jarak ideal point Indonesia ke AS dan ke Tiongkok.
+  Panel B - jarak ideal point I ndonesia ke AS dan ke Tiongkok.
 """
 
 from pathlib import Path
-
 import pandas as pd
-
-import os
-import sys
-
-# Pakai fig-den lokal bila ada (repo: github.com/den-econ/fig-den);
-# bila path tidak ada, Python otomatis memakai versi hasil pip install.
-sys.path.insert(0, os.environ.get("FIG_DEN_PATH", r"C:\Users\imedk\fig-den"))
-import fig_den as den
+import fig_den as den # buat kosmetik DEN-Style
 
 ROOT = Path(__file__).resolve().parents[1]
 SLIDE_BG = "#f0f1eb"

@@ -1,4 +1,4 @@
-"""Latihan 3 — membangun GeoV dan GeoC ekspor Indonesia dari nol.
+"""membangun GeoV dan GeoC ekspor Indonesia dari nol.
 
 Resep (Aiyar & Ohnsorge 2024, NCAER WP 173):
   1. Bobot   : w_j = pangsa mitra j dalam ekspor Indonesia (UN Comtrade,
@@ -21,13 +21,6 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
-
-import os
-import sys
-
-# Pakai fig-den lokal bila ada (repo: github.com/den-econ/fig-den);
-# bila path tidak ada, Python otomatis memakai versi hasil pip install.
-sys.path.insert(0, os.environ.get("FIG_DEN_PATH", r"C:\Users\imedk\fig-den"))
 import fig_den as den
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -39,16 +32,17 @@ ip = ip[["iso3c", "year", "IdealPointFP"]].dropna()
 
 exp = trade[(trade["flowCode"] == "X") & (trade["partnerCode"] != 0)].copy()
 
+# Bikin loop per tahun untuk ngitung GeoV dan GeoC ekspor Indonesia
 rows = []
-for year, g in exp.groupby("refYear"):
+for year, g in exp.groupby("refYear"): # ngambil ideal point untuk tiap negara tujuan ekspor tiap taun.
     p = ip[ip["year"] == year].set_index("iso3c")["IdealPointFP"]
     if "IDN" not in p.index:
         continue
     g = g[g["iso3"].isin(p.index) & (g["iso3"] != "IDN")]
     total = exp.loc[exp["refYear"] == year, "primaryValue"].sum()
-    covered = g["primaryValue"].sum() / total  # cakupan mitra yang punya ideal point
+    covered = g["primaryValue"].sum() / total  # cakupan mitra yang punya ideal point untuk normalisasi bobot
     w = g["primaryValue"] / g["primaryValue"].sum()  # renormalisasi bobot
-    d = (p["IDN"] - p.loc[g["iso3"]]).abs().to_numpy()
+    d = (p["IDN"] - p.loc[g["iso3"]]).abs().to_numpy() 
     geov = float((w.to_numpy() * d).sum())
     n = len(g)
     geoc = float(np.sqrt(n / (n - 1) * (w.to_numpy() * (d - geov) ** 2).sum()))
@@ -57,7 +51,7 @@ for year, g in exp.groupby("refYear"):
 
 diy = pd.DataFrame(rows).set_index("year").sort_index()
 
-pub = pd.read_csv(ROOT / "data" / "GeoVGeoC.tab", sep="\t")
+pub = pd.read_csv(ROOT / "data" / "GeoVGeoC.tab", sep="\t") # Karena .tab jadinya perlu dikasi tau separatornya pake `sep="\t"`
 pub = (pub[pub["country"] == "Indonesia"]
        .set_index("year")[["GeoV_exports", "GeoC_exports"]]
        .dropna().sort_index())

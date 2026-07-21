@@ -13,7 +13,7 @@ format:
     slide-number: true
 ---
 
-## Tujuan sesi ini
+## Intro {.m}
 
 - Kita coba menghitungnya sendiri, dari data publik, dengan Python.
 
@@ -47,7 +47,7 @@ Kebutuhan: Python (Anaconda) + `pandas numpy matplotlib xlrd`, gaya figur [fig-d
 | Trade bilateral IDN | UN Comtrade (`comtradeapicall`) |
 | GeoV/GeoC (validasi) | Harvard Dataverse doi:10.7910/DVN/PGCQVD |
 
-# Latihan 1 — Geopolitical Risk Index
+# Geopolitical Risk Index
 
 ## Konsep GPR {.m}
 
@@ -75,11 +75,11 @@ for col in ["GPRC_USA", "GPRC_CHN", "GPRC_IDN"]: # panel B: per negara
 
 ## Hasil {.m}
 
+
 ![](figures/gpr_4series.png){fig-align="center" width="72%"}
 
-Rata-rata 2022–26 vs 2010–19: global **1,6×**, USA **1,8×**, Tiongkok **2,0×**, Indonesia **2,4×** — level GPRC Indonesia kecil (kita jarang jadi subjek berita risiko), tetapi kenaikan relatifnya justru paling tajam.
 
-# Latihan 2 — UNGA ideal points
+# UNGA ideal points
 
 ## Menarik ideal points {.m}
 
@@ -101,9 +101,7 @@ jarak_ke_AS = (wide["IDN"] - wide["USA"]).abs()
 
 ![](figures/ideal_points_sesi5.png){fig-align="center" width="70%"}
 
-2025: USA **3,36**, AUS 0,97, CHN −0,16, IDN **−0,78**. Jarak Indonesia: ke AS **4,15**, ke Tiongkok **0,62** — bahan baku $d_{ij}$ untuk latihan berikutnya.
-
-# Latihan 3 — GeoV & GeoC dari nol
+# GeoV & GeoC dari nol
 
 ## Resep empat langkah {.m}
 
@@ -153,7 +151,7 @@ Garis emas = hitungan kita; merah putus-putus = database terbitan Aiyar & Ohnsor
 
 - DIY punya bonus: bisa diperluas ke **2024** (terbitan berhenti di 2023), ke impor, atau ke level sektor.
 
-# Latihan 4 — HHI & Theil
+# HHI & Theil
 
 ## Dua ukuran konsentrasi {.m}
 
@@ -197,18 +195,12 @@ HHI impor **898 → 1.248** (2016→2024): mitra efektif menyusut **11 → 8**. 
 
 # Penutup
 
-## Resep umum & ekstensi untuk BI {.m}
+## Ending {.m}
 
-Pola keempat latihan sama: **data publik → agregasi → satu rumus → satu grafik.**
+- GPR relies on top 10 berita berpengaruh, yang sangat berpotensi western-centric. Bisa kita recreate dengan artikel yang kita pilih asal ada databasenya.
 
-| Ekstensi | Caranya |
-|------|--------|
-| Per produk (HS-2/HS-6) | ganti `cmdCode=TOTAL` di query Comtrade |
-| Per eksportir/importir | fungsi `concentration()` yang sama pada data transaksi DHE/DPI internal BI |
-| GeoV/GeoC impor, FDI | ganti bobot: impor Comtrade, FDI dari CDIS |
-| Jasa | OECD-WTO BaTIS (balanced services matrix) |
-| Bobot risiko | gabungkan: GPR mitra × pangsa mitra (Sesi IV) |
+- Ideal point relies on UN vote, jadi isu-isu yang ga ada di UNGA ga tercover. Plus, vote belum tentu menggambarkan actual ideal point.
 
-Referensi lengkap + tautan download: `README.md` di folder ini.
+- Data ekspor-impor bisa kita ganti pakai data perusahaan alih-alih negara.
 
-**Terima kasih** — kode & slide: folder `sesi5/` (segera di GitHub).
+- kode & slide: [github saya](https://github.com/imedkrisna/geoeconomics/)

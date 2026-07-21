@@ -1,4 +1,4 @@
-"""Latihan 4 — HHI dan Theil: konsentrasi mitra dagang Indonesia.
+"""HHI dan Theil: konsentrasi mitra dagang Indonesia.
 
 Data: UN Comtrade (data/idn_bilateral_trade.csv — reporter 360=Indonesia,
 cmdCode TOTAL, 2000-2024, flowCode X=ekspor / M=impor; baris partnerCode==0

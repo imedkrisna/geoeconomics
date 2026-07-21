@@ -40,17 +40,18 @@ EVENTS = {pd.Timestamp("1991-01-01"): "Perang Teluk",
 
 den.style()             # Menggunakan den-style figures. matikan jika anda punya style sendiri
 fig, (axA, axB) = den.subplots(2, 1, figsize=(10, 8), sharex=True)
-fig.patch.set_facecolor(SLIDE_BG)
+fig.patch.set_facecolor(SLIDE_BG)   # Ngeset background diagramnya sesuai color slide. bisa dimatikan.
 
-axA.plot(monthly.index, monthly["GPR"], color=den.RED, lw=1.4)
+axA.plot(monthly.index, monthly["GPR"], color=den.RED, lw=1.4)  # Plot GPR global, x=indeks time, y=value GPR, color dan lw purely cosmetic.
 axA.set_title("A | GPR global (indeks, 1985:2019 = 100)",
               fontsize=11, fontweight="bold", loc="left")
 
-for col, lab, c in [("GPRC_USA", "USA", den.DARK_BROWN),
+# Mulai bikin GPRC-nya USA, China, dan Indonesia.
+for col, lab, c in [("GPRC_USA", "USA", den.DARK_BROWN),    
                     ("GPRC_CHN", "Tiongkok", den.SLATE_BLUE),
                     ("GPRC_IDN", "Indonesia", den.BRIGHT_GOLD)]:
     axB.plot(monthly.index, monthly[col], color=c, lw=1.2, label=lab)
-axB.set_title("B | GPRC per negara (share artikel surat kabar)",
+axB.set_title("B | GPRC per negara",
               fontsize=11, fontweight="bold", loc="left")
 axB.legend(frameon=False, loc="upper left")
 
@@ -64,7 +65,7 @@ for i, (dt, lab) in enumerate(EVENTS.items()):
     axA.annotate(lab, (dt, axA.get_ylim()[1] * (0.97 if i % 2 == 0 else 0.90)),
                  fontsize=8, color=den.MEDIUM_GREY, ha="center")
 
-fig.suptitle("Geopolitical Risk Index, 1985-2026 (Caldara & Iacoviello 2022)",
+fig.suptitle("Geopolitical Risk Index, 1985-2026",
              fontsize=13, fontweight="bold", x=0.012, ha="left")
 fig.tight_layout(rect=[0, 0, 1, 0.96])
 den.save(fig, ROOT / "figures" / "gpr_4series.png")

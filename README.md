@@ -1,6 +1,8 @@
 # Pengukuran Pengaruh Geopolitik terhadap Ekspor dan Impor Indonesia
 
-Repository ini mencoba menunjukkan bagaimana mencari dan menggunakan data-data terkait geoeconomics. In total ada 4 indikator:
+Repository ini mencoba menunjukkan bagaimana mencari dan menggunakan data-data terkait geoeconomics. Repo ini dimaintain oleh [Krisna Gupta alias Imed](https://krisna.or.id/), bisa dikontak di sosmed mainstream di `@imedkrisna`.
+
+In total ada 4 indikator:
 
 | # | Indikator | Skrip | Output |
 |---|---------|-------|--------|
@@ -25,10 +27,10 @@ geoeconomics/
 
 ## Setup
 
-Semuanya diplot dengan menggunakan `python` tapi tentu anda bisa juga menggunakan alat lain seperti Excel, R, ataupun Stata.
-Repo ini menggunakan Python (lebih spesifiknya Anaconda distribution) dengan `pandas`, `numpy`, `matplotlib`, `xlrd`
+- Semuanya diplot dengan menggunakan `python` tapi tentu anda bisa juga menggunakan alat lain seperti Excel, R, ataupun Stata.
+- Repo ini menggunakan Python (lebih spesifiknya Anaconda distribution) dengan `pandas`, `numpy`, `matplotlib`, `xlrd`
    (pembaca `.xls`): `pip install pandas numpy matplotlib xlrd`.
-
+- Saya pakai `fig-den` untuk styling grafik a la Dewan Ekonomi Nasional. Bisa dimatikan jika anda pakai default style atau anda punya style anda sendiri.
 
 ## Menjalankan
 
@@ -66,5 +68,3 @@ Semua data input sudah disertakan di `data/`. Tabel berikut mencatat sumber resm
 - Aiyar, S. & F. Ohnsorge (2024). Geoeconomic fragmentation and "connector"
   countries. NCAER WP 173.
 - UN Comtrade (data perdagangan; perbarui dengan mendownload dari sini atau sumber lain).
-
-Penulis: Krisna Gupta  — [krisna.or.id](https://krisna.or.id).
