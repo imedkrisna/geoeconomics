@@ -30,8 +30,8 @@ format:
 Struktur folder (bisa di-clone dari GitHub):
 
 ```
-sesi5/
-  sesi5.qmd     # slide ini
+geoeconomics/
+  index.qmd     # slide ini
   README.md     # instruksi + tabel sumber data
   code/         # 01_gpr.py ... 04_hhi_theil.py
   data/         # semua input (~9 MB, sudah disertakan)
@@ -51,19 +51,20 @@ Kebutuhan: Python (Anaconda) + `pandas numpy matplotlib xlrd`, gaya figur [fig-d
 
 ## Konsep GPR {.m}
 
-- Caldara & Iacoviello (2022): risiko geopolitik diukur dari **frekuensi pemberitaan** — share artikel di 10 surat kabar besar yang memuat kata kunci perang/ketegangan/terorisme.
+- Caldara & Iacoviello (2022): risiko geopolitik diukur dari frekuensi pemberitaan:
+    - share artikel di 10 surat kabar besar yang memuat kata kunci perang/ketegangan/terorisme.
 
-- **GPR** = indeks global (rata-rata 1985–2019 = 100); **GPRH** = versi historis sejak 1900.
+- GPR = indeks global (rata-rata 1985–2019 = 100); GPRH = versi historis sejak 1900.
 
-- **GPRC_XXX** = indeks spesifik negara (44 ekonomi): share artikel yang menyebut negara itu dalam konteks risiko geopolitik.
+- $GPRC_i$ = indeks spesifik negara $i \in \{\text{ 44 negara}\}$: share artikel yang menyebut negara itu dalam konteks risiko geopolitik.
 
-- Satu file Excel, bulanan, gratis: `data_gpr_export.xls`.
+- Satu file Excel, bulanan, gratis, sudah di download di "data/gpr_raw.xls".
 
 ## Kode inti (`01_gpr.py`) {.m}
 
 ```python
-raw = pd.read_excel("data/gpr_raw.xls", sheet_name="Sheet1")
-raw["year"] = raw["month"].dt.year
+raw = pd.read_excel("data/gpr_raw.xls", sheet_name="Sheet1")    # ambil data
+raw["year"] = raw["month"].dt.year                              # bikin jadi ts
 annual = raw.groupby("year")[["GPR", "GPRC_USA",
                               "GPRC_CHN", "GPRC_IDN"]].mean()
 
@@ -71,8 +72,6 @@ axA.plot(annual.index, annual["GPR"])            # panel A: global
 for col in ["GPRC_USA", "GPRC_CHN", "GPRC_IDN"]: # panel B: per negara
     axB.plot(annual.index, annual[col])
 ```
-
-Tiga baris pertama adalah 90% pekerjaannya: baca, agregasi bulanan → tahunan, plot.
 
 ## Hasil {.m}
 
